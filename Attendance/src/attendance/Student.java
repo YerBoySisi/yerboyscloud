@@ -48,6 +48,13 @@ public class Student implements Attendee {
 
 	public String getReportString() {
 		
+		if(firstName.length() > 20) {
+			
+		}
+
+		if(lastName.length() > 20) {
+			
+		}
 		
 		return null;
 		
