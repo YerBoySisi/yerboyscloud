@@ -1,10 +1,19 @@
 package attendance;
 
+
+
 public class Student implements Attendee {
 	
 	private String firstName;
 	private String lastName;
 	boolean present = false;
+	
+	Student(String first, String last) {
+		
+		firstName = first;
+		lastName = last;
+		
+	}
 	
 	public boolean isPresent() {
 
@@ -36,27 +45,37 @@ public class Student implements Attendee {
 
 	public boolean matches(String first, String last) {
 		
-		return (this.firstName == first && this.lastName == last);
+		return (alteredFirst == first && alteredLast == last);
 		
 	}
 
 	public boolean matches(String last) {
 		
-		return (this.lastName == last);
+		return (alteredLast == last);
 		
 	}
 
 	public String getReportString() {
 		
+		String status;
+		
 		if(firstName.length() > 20) {
-			
+			firstName = firstName.substring(0, 17);
+			firstName += "...";
 		}
 
 		if(lastName.length() > 20) {
-			
+			lastName = lastName.substring(0, 17);
+			lastName += "...";
 		}
 		
-		return null;
+		if(present) {
+			status = "PRESENT";
+		} else {
+			status = "ABSENT";
+		}
+		
+		return firstName + "                   " + lastName + "                   " + status;
 		
 	}
 
