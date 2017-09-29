@@ -75,7 +75,7 @@ public class Student implements Attendee {
 			status = "ABSENT";
 		}
 		
-		return firstName + "                   " + lastName + "                   " + status;
+		return firstName + "                   " + lastName + "                   " + status + System.lineSeparator();
 		
 	}
 
