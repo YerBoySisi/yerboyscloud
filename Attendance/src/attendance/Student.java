@@ -45,13 +45,13 @@ public class Student implements Attendee {
 
 	public boolean matches(String first, String last) {
 		
-		return (alteredFirst == first && alteredLast == last);
+		return (firstName.equalsIgnoreCase(first) && lastName.equalsIgnoreCase(last));
 		
 	}
 
 	public boolean matches(String last) {
 		
-		return (alteredLast == last);
+		return (lastName.equalsIgnoreCase(last));
 		
 	}
 
