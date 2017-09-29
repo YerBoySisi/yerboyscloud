@@ -4,6 +4,6 @@ public interface Topic {
 
 	boolean isTriggered(String response);
 
-	void startChatting();
+	void startChatting(String response);
 
 }

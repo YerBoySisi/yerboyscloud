@@ -18,6 +18,7 @@ public class Chatbot {
 		
 		ChatbotMain.print("Welcome to our chatbot! What is your name?");
 		user = ChatbotMain.getInput();
+		chatting = true;
 		
 		while(chatting) {
 			ChatbotMain.print("What do you want to talk about?");
@@ -25,7 +26,7 @@ public class Chatbot {
 			
 			if(Sisi.isTriggered(response)) {
 				chatting = false;
-				Sisi.startChatting();
+				Sisi.startChatting(response);
 			} else {
 				ChatbotMain.print("I'm sorry, I don't understand.");
 			}
