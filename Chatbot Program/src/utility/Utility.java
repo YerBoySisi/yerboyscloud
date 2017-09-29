@@ -1,4 +1,4 @@
-package strings;
+package utility;
 
 import java.util.Scanner;
 
@@ -9,24 +9,7 @@ public class Utility{
 	private static Scanner inputSource = new Scanner(System.in);
 
 
-	public static void main(String[] args){
-		//this main method is designed to help you test your keywordIsIsolated method and noNegations method
-		if( keywordIsIsolated(4,"good","i'm good") && keywordIsIsolated(0,"good","good. how are you?") 
-				&& !keywordIsIsolated(4,"good","goodbye. i hope you feel good") && keywordIsIsolated(25,"good","goodbye. i hope you feel good")){
-			print("You passed all the keywordIsIsolated tests.");
-		}
-		if(!noNegations("I am not great, but I am okay", 9) && noNegations("I am not great, but I am okay", 25) && noNegations("okay", 0)){
-			print("You passed all the noNegations tests.");
-		}
-
-	}
-
-	/**
-	 * This method returns the index of keyword in the searchString (after startPsn)
-	 *  where keyword is isolated and has noNegations. It returns -1 if the
-	 *  keyword is not found
-	 */
-	public static int findKeyword(String searchString, String keyword, int startPsn) {
+public static int findKeyword(String searchString, String keyword, int startPsn) {
 		//makes lowercase
 		searchString = searchString.toLowerCase();
 		keyword = keyword.toLowerCase();
