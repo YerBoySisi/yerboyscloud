@@ -20,7 +20,7 @@ public class ChatSisi implements Topic {
 		
 		for(int i = 0; i < keywords.length; i++) {
 			
-			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0)) {
+			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0) {
 				return true;
 			}
 			
@@ -46,7 +46,9 @@ public class ChatSisi implements Topic {
 			} else {
 				
 				if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0) {
-					ChatbotMain.print();
+					ChatbotMain.print("Oh my goodness! You guessed my favorite thing ever. We are friends now.");
+				} else {
+					ChatbotMain.print("Huh, I don't really get you. Tell me something else?");
 				}
 				
 			}
