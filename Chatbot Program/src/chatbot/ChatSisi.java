@@ -9,9 +9,10 @@ public class ChatSisi implements Topic {
 	
 	public ChatSisi() {
 		
-		String[] temp = {"food", "entertainment", "Internet", "video games"};
+		String[] temp = {"spelling", "tense", "punctuation", "grammar", "suffix", "prefix", 
+						 "noun", "verb", "adjective", "adverb", "pronoun", "proper noun"};
 		keywords = temp;
-		goodbyeWord = "bye";
+		goodbyeWord = "i give up";
 		secretWord = "pug";
 		
 	}
