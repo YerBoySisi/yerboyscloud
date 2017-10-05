@@ -21,7 +21,9 @@ public class Chatbot {
 		chatting = true;
 		
 		while(chatting) {
-			ChatbotMain.print("What do you want to talk about?");
+			ChatbotMain.print("What topic do you need help with? You can choose from the following list: " + "spelling, " + "tense, " 
+					 + "punctuation, " + "grammar, " + "suffix, " + "prefix, " + "noun, " + "verb, " + "adjective, " + "adverb, " 
+					+ "pronoun, " + "proper noun");
 			String response = ChatbotMain.getInput();
 			
 			if(Sisi.isTriggered(response)) {

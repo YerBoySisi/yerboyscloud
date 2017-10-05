@@ -1,11 +1,15 @@
 package chatbot;
 
+import java.util.ArrayList;
+
 public class ChatSisi implements Topic {
 	
 	private String[] keywords;
+	private String[] keywordDescriptions;
 	private String goodbyeWord;
 	private String[] triggerWords;
-	private String[] previousTriggerWords;
+	private String previousTriggerWord = "";
+	private ArrayList<String> previousTriggerWords = new ArrayList<String>();
 	private boolean chatting;
 	private int irritationLevel;
 	
@@ -14,12 +18,27 @@ public class ChatSisi implements Topic {
 		String[] temp = {"spelling", "tense", "punctuation", "grammar", "suffix", "prefix", 
 						 "noun", "verb", "adjective", "adverb", "pronoun", "proper noun"};
 		keywords = temp;
-		goodbyeWord = "i give up";
-		String[] temp2 = {"they're are", "they're were", "they're is", "their were", "their are", 
+		
+		String[] temp2 = {"",
+						  "",
+						  "",
+						  "",
+						  "",
+						  "",
+						  "",
+						  "",
+						  "",
+						  "",
+						  "",
+						  "",};
+		keywordDescriptions = temp2;
+		
+		String[] temp3 = {"they're are", "they're were", "they're is", "their were", "their are", 
 						  "their is", "over their", "over they're", "over their", "that's theres", 
-						  "it's theres", "that's there's", "it's there's"};
-		triggerWords = temp2;
+						  "it's theres", "that's there's", "it's there's", "its theres", "its there's"};
+		triggerWords = temp3;
 		irritationLevel = 0;
+		goodbyeWord = "i give up";
 		
 	}
 	
@@ -40,7 +59,7 @@ public class ChatSisi implements Topic {
 	
 	public void startChatting(String response) {
 
-		ChatbotMain.print("Hey! It sounds like you and I have a common interest! Let's talk some more!");
+		ChatbotMain.print("Alright then, let's talk about - " + response + ".");
 		chatting = true;
 		
 		while(chatting) {
@@ -83,13 +102,13 @@ public class ChatSisi implements Topic {
 											+ "least listen to what I say. It really, REALLY sets me off when people use the wrong word of those 3.");
 									ChatbotMain.print("Let me try to help you out there.");
 									
-									for(int n = 0; n < previousTriggerWords.length; n++) {
+									for(int n = 0; n < previousTriggerWords.size() - 1; n++) {
 										
-										if(ChatbotMain.findKeyword(previousTriggerWords[i], "there", 0) >= 0) {
-											ChatbotMain.print("You used the word '" + previousTriggerWords[n] + "'. The correct word to use here would've "
+										if(ChatbotMain.findKeyword(previousTriggerWords.get(n), "there", 0) >= 0) {
+											ChatbotMain.print("You used the word '" + previousTriggerWords.get(n) + "'. The correct word to use here would've "
 													+ "been 'their'. This is because what you said was meant to express ownership of some sort.");
 										} else {
-											ChatbotMain.print("You used the word '" + previousTriggerWords[n] + "'. The correct word to use here would've "
+											ChatbotMain.print("You used the word '" + previousTriggerWords.get(n) + "'. The correct word to use here would've "
 													+ "been 'there'. This is because what you said was meant to express either the location of something, "
 													+ "or the existence of something.");
 										}
@@ -118,9 +137,9 @@ public class ChatSisi implements Topic {
 										ChatbotMain.print("Okay, I've had it up to here. I'm done. Go ask Google for help or something. It's where I'm getting "
 												+ "all this info from anyway. Here are all your silly mistakes for you to look up: ");
 										
-										for(int n = 0; n < previousTriggerWords.length; n++) {
+										for(int n = 0; n < previousTriggerWords.size() - 1; n++) {
 											
-											ChatbotMain.print(previousTriggerWords[n] + ", ");
+											ChatbotMain.print(previousTriggerWords.get(n) + ", ");
 											
 										}
 										
@@ -138,24 +157,19 @@ public class ChatSisi implements Topic {
 							
 						}
 						
-						if(previousTriggerWords.length > 0) {
-						
-							if(previousTriggerWords[previousTriggerWords.length - 1] == triggerWords[i]) {
-								irritationLevel += 10;
-							} else {
+						if(previousTriggerWord == triggerWords[i]) {
+							irritationLevel += 10;
+						} else {
 							irritationLevel++;
-							}
-							
+							previousTriggerWord = triggerWords[i];
+							previousTriggerWords.add(previousTriggerWord);
 						}
-						
-						previousTriggerWords[previousTriggerWords.length - 1] = triggerWords[i];
-						return;
 							
 					}
 					
 				}
 				
-				ChatbotMain.print("I do not comprehend what you are saying. My intelligence is limited. Say something else.");
+				ChatbotMain.print("I do not comprehend what you are saying, as my intelligence is limited. Say something else.");
 				
 			}
 			
