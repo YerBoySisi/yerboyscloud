@@ -1,5 +1,6 @@
 package entity;
 
+import entity.characteristics.Hobby;
 import place.Borough;
 
 public class Person {
@@ -15,12 +16,93 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private Borough home;
+	private Hobby hobby;
+	private Person[] friends;
 	
 	public Person(String first, String last, Borough borough) {
 		
-		firstName = first;
-		lastName = last;
-		home = borough;
+		this.firstName = first;
+		this.lastName = last;
+		this.home = borough;
+		this.hobby = Hobby.randomHobby();
+		this.friends = new Person[3];
+		
+	}
+	
+	public void mingle(Person[] people) {
+		
+		for(Person p: people) {
+			
+			if(p != this) {
+				p = betterFriend(p, friends[0]); //reassign p to the better of the two friends
+				addFriendToFirstPlace(p);
+			}
+			
+		}
+		
+	}
+	
+	private Person betterFriend(Person p, Person q) {
+
+		if(p == null) {
+			return q;
+		}
+		
+		if(q == null) {
+			return p;
+		}
+		
+		if(p.getClass() == this.getClass()) {
+			
+			if(q.getClass() == this.getClass()) {
+				
+				if(p.hobby == this.hobby) {
+					return p;
+				}
+				
+				if(q.hobby == this.hobby) {
+					return q;
+				}
+				
+				return p;
+				
+			}
+			
+			return p;
+			
+		}
+		
+		if(q.getClass() == this.getClass()) {
+			return q;
+		}
+		
+		return p; //If none of these are true, just take p
+		
+	}
+
+	public void printFriends() {
+		
+		System.out.println("Hi, my name is " + firstName + " " + lastName + ". These are my friends: ");
+		
+		for(Person f:friends) {
+			
+			if(f != null) {
+				System.out.println(f);
+			}
+			
+		}
+		
+	}
+	
+	public void addFriendToFirstPlace(Person p) {
+		
+		for(int i = 0; i < friends.length - 1; i++) {
+			
+			friends[i + 1] = friends[i]; 
+			
+		}
+		
+		friends[0] = p;
 		
 	}
 	
