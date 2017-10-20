@@ -16,6 +16,7 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private Borough home;
+	private String nickname;
 	private Hobby hobby;
 	private Person[] friends;
 	
@@ -23,6 +24,7 @@ public class Person {
 		
 		this.firstName = first;
 		this.lastName = last;
+		this.nickname = createNickname(firstName);
 		this.home = borough;
 		this.hobby = Hobby.randomHobby();
 		this.friends = new Person[3];
@@ -106,9 +108,42 @@ public class Person {
 		
 	}
 	
+	public static String createNickname(String name) {
+		
+		boolean foundVowel = false;
+		
+		for(int i = 0; i < name.length(); i++) {
+			
+			if(isVowel(name.substring(i, i + 1))) {
+				
+				if(foundVowel) {
+					return name.substring(0, i);
+				}
+				
+				foundVowel = true;
+			}
+			
+		}
+		
+		return name;
+		
+	}
+	
+	public static boolean isVowel(String letter) {
+		
+		if(letter.equals("a") || letter.equals("e") || letter.equals("i") ||
+		   letter.equals("o") || letter.equals("u") || letter.equals("y")) {
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
 	public String toString() {
 		
-		return "My name is " + firstName + " " + lastName + " and I live in " + home + ".";
+		return "My name is " + firstName + " " + lastName + " and I live in " + home + 
+				". You can call me " + nickname + ".";
 		
 	}
 	

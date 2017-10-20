@@ -14,6 +14,12 @@ public class ObjectArrays {
 		Person[] people = new Person[20];
 		populate(people);
 		
+		for(Person p:people) {
+			p.mingle(people);
+			p.printFriends();
+			System.out.println("");
+		}
+		
 	}
 
 	private void populate(Person[] people) {
