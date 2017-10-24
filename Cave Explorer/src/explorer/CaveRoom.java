@@ -81,6 +81,79 @@ public class CaveRoom {
 		return directions[dir];
 		
 	}
+	
+	public void enter() {
+		
+		contents = "X";
+		
+	}
+	
+	public void leave() {
+		
+		contents = defaultContents;
+		
+	}
+	
+	public void setConnection(int direction, CaveRoom otherRoom, Door door) {
+		
+		addRoom(direction, otherRoom, door);
+		otherRoom.addRoom(oppositeDirection(direction), this, door);
+		
+	}
+
+	public static int oppositeDirection(int direction) {
+		
+		return (direction + 2) % 4;
+		
+	}
+
+	public void addRoom(int direction, CaveRoom cave, Door door) {
+
+		borderingRooms[direction] = cave;
+		doors[direction] = door;
+		setDirections();
+		
+	}
+	
+	public void interpretInput(String input) {
+		
+		while(isValid(input)) {
+			System.out.println("You can only enter 'W', 'A', 'S', or 'D'.");
+			input = CaveExplorerMain.in.nextLine();
+		}
+		
+		String inputs = "wdsa";
+		goToRoom(directions.indexOf(input));
+		
+	}
+	
+	private boolean isValid(String input) {
+		
+		String validEntries = "wdsa";
+		return (validEntries.indexOf(input) > -1 && input.length() == 1);
+		
+	}
+
+	private void goToRoom(int direction) {
+		
+		if(borderingRooms[direction] != null && doors[direction] != null) {
+			CaveExplorerMain.currentRoom.leave();
+			CaveExplorerMain.currentRoom = borderingRooms[direction];
+			CaveExplorerMain.currentRoom.enter();
+			CaveExplorerMain.inventory.updateMap();
+		}
+		
+	}
+	
+	/*
+	 * This is where all caves and connections are set up
+	 */
+	
+	public static void setUpCaves() {
+		
+		
+		
+	}
 
 	public void setDescription(String description) {
 		
