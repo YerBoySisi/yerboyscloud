@@ -29,7 +29,7 @@ public class CaveRoom {
 		
 	}
 	
-	/*
+	/**
 	 * For every door in doors[], appends a String to "directions"
 	 * EXAMPLE:
 	 * 	"There is a door to the north"
@@ -61,7 +61,7 @@ public class CaveRoom {
 		
 	}
 	
-	/*
+	/**
 	 * Converts an int to a direction
 	 * EXAMPLE:
 	 * 	toDirection(0) ---> "the North"
@@ -117,35 +117,71 @@ public class CaveRoom {
 	
 	public void interpretInput(String input) {
 		
-		while(isValid(input)) {
-			System.out.println("You can only enter 'W', 'A', 'S', or 'D'.");
+		while(!isValid(input)) {
+			printAllowedEntry();
 			input = CaveExplorerMain.in.nextLine();
 		}
 		
-		String inputs = "wdsa";
-		goToRoom(directions.indexOf(input));
+		String directions = validKeys();
+		respondToKey(directions.indexOf(input));
+		
+	}
+	
+	/**
+	 * Override to add more keys, but always include 'wdsa'
+	 * @return
+	 */
+	public String validKeys() {
+		
+		return "wdsa";
+		
+	}
+	
+	/**
+	 * Override to print a custom string describing what keys do
+	 */
+	public void printAllowedEntry() {
+		
+		CaveExplorerMain.print("You can only enter 'W', 'A', 'S', or 'D'.");
 		
 	}
 	
 	private boolean isValid(String input) {
 		
-		String validEntries = "wdsa";
-		return (validEntries.indexOf(input) > -1 && input.length() == 1);
+		return (validKeys().indexOf(input) > -1 && input.length() == 1);
 		
 	}
 
-	private void goToRoom(int direction) {
+	private void respondToKey(int direction) {
 		
-		if(borderingRooms[direction] != null && doors[direction] != null) {
-			CaveExplorerMain.currentRoom.leave();
-			CaveExplorerMain.currentRoom = borderingRooms[direction];
-			CaveExplorerMain.currentRoom.enter();
-			CaveExplorerMain.inventory.updateMap();
+		if(direction < 4) {
+		
+			if(borderingRooms[direction] != null && doors[direction] != null) {
+				CaveExplorerMain.currentRoom.leave();
+				CaveExplorerMain.currentRoom = borderingRooms[direction];
+				CaveExplorerMain.currentRoom.enter();
+				CaveExplorerMain.inventory.updateMap();
+			}
+			
+		} else {
+			
+			performAction(direction);
+			
 		}
 		
 	}
 	
-	/*
+	/**
+	 * Override to give response to keys other than 'wdsa'
+	 * @param key
+	 */
+	public void performAction(int key) {
+		
+		CaveExplorerMain.print("Nothing happened");
+		
+	}
+	
+	/**
 	 * This is where all caves and connections are set up
 	 */
 	

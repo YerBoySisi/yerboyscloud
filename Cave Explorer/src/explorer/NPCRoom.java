@@ -13,7 +13,7 @@ public class NPCRoom extends CaveRoom {
 		
 	}
 	
-	/*
+	/**
 	 * NPCs can enter a room if no other NPC is in the room
 	 * @return
 	 */
@@ -43,5 +43,33 @@ public class NPCRoom extends CaveRoom {
 	
 	//The methods above ADD to CaveRoom methods
 	//The methods below OVERRIDE CaveRoom methods
+	
+	public String validKeys() {
+		
+		return "wdsae";
+		
+	}
+	
+	public void printAllowedEntry() {
+		
+		System.out.println("You can enter 'W', 'A', 'S', or 'D' to move, or 'E' to interact.");
+		
+	}
+	
+	public void performAction(int key) {
+		
+		if(key == 4) {
+			
+			if(containsNPC() && presentNPC.isActive()) {
+				presentNPC.interact();
+			} else {
+				CaveExplorerMain.print("Huh? No one's here.");
+			}
+			
+		} else {
+			CaveExplorerMain.print("Nothing happened.");
+		}
+		
+	}
 	
 }
