@@ -37,10 +37,9 @@ public class CaveRoom {
 	 * If there are no doors at all, directions should say:
 	 * 	"There are no doors, you are trapped in here"
 	 */
-	
 	private void setDirections() {
 
-		directions = "";
+		this.directions = "";
 		
 		boolean doorFound = false;
 		
@@ -48,14 +47,14 @@ public class CaveRoom {
 			
 			if(doors[i] != null) {
 				doorFound = true;
-				directions += "\n There is a " + doors[i].getDescription() + " to " + toDirection(i) + ". " + doors[i].getDetails();
+				this.directions += "\n There is a " + doors[i].getDescription() + " to " + toDirection(i) + ". " + doors[i].getDetails();
 			}
 			
 		}
 		
 		if(!doorFound) {
 			
-			directions += "There's no way out. You're trapped!";
+			this.directions += "There's no way out. You're trapped!";
 			
 		}
 		
@@ -68,7 +67,6 @@ public class CaveRoom {
 	 * @param dir
 	 * @return
 	 */
-	
 	public static String toDirection(int dir) {
 		
 		String[] directions = {"the North", "the East", "the South", "the West"};
@@ -94,6 +92,13 @@ public class CaveRoom {
 		
 	}
 	
+	/**
+	 * Gives this room access to anotherRoom (and vice-versa)
+	 * and sets a door between them, updating the directions
+	 * @param direction
+	 * @param anotherRoom
+	 * @param door
+	 */
 	public void setConnection(int direction, CaveRoom otherRoom, Door door) {
 		
 		addRoom(direction, otherRoom, door);
@@ -226,7 +231,7 @@ public class CaveRoom {
 
 	public void setDescription(String description) {
 		
-		this.description = description;
+		this.description = description + "\n" + directions;
 		
 	}
 	

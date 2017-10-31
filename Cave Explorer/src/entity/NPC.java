@@ -1,7 +1,13 @@
 package entity;
 
 public class NPC {
-
+	
+	public NPC() {
+		
+		
+		
+	}
+	
 	public void interact() {
 
 		
@@ -12,6 +18,12 @@ public class NPC {
 
 		
 		return false;
+		
+	}
+
+	public String getInactiveDescription() {
+		
+		return null;
 		
 	}
 	
