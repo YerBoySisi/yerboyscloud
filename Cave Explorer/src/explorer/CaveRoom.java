@@ -149,37 +149,42 @@ public class CaveRoom {
 	 * This is where all caves and connections are set up
 	 */
 	
-	public static void setUpCaves() {
+	public static void setUpCaves() { //ALL OF THIS CODE CAN BE CHANGED
 		
-		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
 		CaveExplorerMain.caves = new CaveRoom[5][5];
-		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
+		
+		//2. Populate with caves and a default description: hint: when starting, use coordinates (helps debugging)
 		for(int row = 0; row < CaveExplorerMain.caves.length; row++) {
+			
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
 			for(int col = 0; col < CaveExplorerMain.caves[row].length; col++) {
+				
 				//create a "default" cave
 				CaveExplorerMain.caves[row][col] = 
 						new CaveRoom("This cave has coords ("+row+","+col+")");
+				
 			}
+			
 		}
+		
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
 		
 		//4. Set your starting room:
 		CaveExplorerMain.currentRoom = CaveExplorerMain.caves[0][1];
 		CaveExplorerMain.currentRoom.enter();
-		//5. Set up dooors
+		
+		//5. Set up doors
 		CaveRoom[][] c = CaveExplorerMain.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
-		/**
+		
+		/*
 		 * Special requests:
 		 * moving objects in caves
 		 * what happens when you lose?
 		 * can another object move toward you?
 		 */
-		
-		
 		
 	}
 

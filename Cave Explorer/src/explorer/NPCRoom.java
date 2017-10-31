@@ -41,4 +41,7 @@ public class NPCRoom extends CaveRoom {
 		
 	}
 	
+	//The methods above ADD to CaveRoom methods
+	//The methods below OVERRIDE CaveRoom methods
+	
 }
