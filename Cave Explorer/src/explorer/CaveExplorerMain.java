@@ -12,15 +12,18 @@ public class CaveExplorerMain {
 	public static boolean playing = true;
 	
 	public static void main(String[] args) {
+		
 		in = new Scanner(System.in);
 		CaveRoom.setUpCaves();
 		
 		inventory = new Inventory();
 		startExploring();
+		
 	}
 
 
 	private static void startExploring() {
+		
 		while(playing) {
 			print(inventory.getDescription());
 			print(currentRoom.getDescription());
@@ -28,11 +31,20 @@ public class CaveExplorerMain {
 			String input = in.nextLine();
 			currentRoom.interpretInput(input);
 		}
+		
+	}
+	
+	private static void npcActions() {
+		
+		
+		
 	}
 	
 	public static void print(String s) {
+		
 		//NOTE: later, you can replace this line with the more sophistocated "multiLinePrint" from Chatbot
 		System.out.println(s);
+		
 	}
 
 }
