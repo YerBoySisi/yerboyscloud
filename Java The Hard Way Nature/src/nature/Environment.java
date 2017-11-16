@@ -46,7 +46,8 @@ public class Environment {
 	
 }
 
-/*1. In line 67, what determines how the farm is represented when it is printed?
+/*
+1. In line 67, what determines how the farm is represented when it is printed?
  *Whatever is returned in the toString method 
 2. In line 82, when does eatPlants return true? What do you think this method was designed to do?
  *It returns true when there is at least 1 plant on the field

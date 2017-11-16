@@ -65,3 +65,14 @@ public class Trait {
 	}
 	
 }
+
+/*
+1. This class overrides the "equals" method. The way it overrides it is unexpected. What determines whether or not two traits are "equal"? 
+ *Two traits are equal if 
+2. What determines whether or not a trait is dominant?
+ *If the index of a trait is lower than the index of another trait, that is the dominant trait.
+ *If the indices of each trait are equal, then there is a 50-50 chance of which trait is
+ *dominant.
+3. There are two constructors for Trait. Why do you think that is?
+ *One constructor randomly selects traits, while the other manually does it.
+ */
