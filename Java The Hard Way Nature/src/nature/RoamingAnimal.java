@@ -14,5 +14,5 @@ public class RoamingAnimal extends Animal {
 3. There is no boolean instance variable "living" to keep track of whether an animal is alive or dead. In lines 50 and 55, animals do die. How does the program "keep track" of which animals are alive and which animals are dead?
  *
 4. Under what circumstances would an animal ever die of starvation? Can you explain how the method at line 64 works?
- *
+ * 
 */
