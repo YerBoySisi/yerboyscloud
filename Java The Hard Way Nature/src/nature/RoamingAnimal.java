@@ -1,8 +1,38 @@
 package nature;
 
+import traits.Trait;
+
 public class RoamingAnimal extends Animal {
 	
+	protected Habitat habitat;
+	private boolean sex;
 	
+	public RoamingAnimal(Habitat matingArea) {
+		
+		super();
+		this.habitat = matingArea;
+		sex = Math.random() > .5;
+		
+	}
+	
+	public RoamingAnimal(Habitat matingArea, String description, Trait trait1, Trait trait2) {
+		
+		super (description, trait1, trait2);
+		this.habitat = matingArea;
+		sex = Math.random() > .5;
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		int capacity = 6;
+		Habitat h = new Habitat(capacity);
+		
+		for(int i = 0; i < capacity; i++) {
+			
+		}
+		
+	}
 	
 }
 
