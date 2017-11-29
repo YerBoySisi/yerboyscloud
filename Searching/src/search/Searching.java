@@ -43,12 +43,12 @@ public class Searching {
 				+ "\n    Press 'enter' to begin.");
 		in.nextLine();
 
-		int index = search(numbers, target);
+		int index = binarySearch(numbers, 50, 600, target);
 
 		if(index!=-1){
 			System.out.println("The number "+target+" was found at index "+index+". Did the computer win?");
 		}else{
-			System.out.println("The number "+target+" was not found in the file.");
+			System.out.println("The number "+target+" was not found within these bounds in the file.");
 		}
 		
 	}
@@ -71,15 +71,51 @@ public class Searching {
 	
 	public static int binarySearch(int[] searchThis, int idx1, int idx2, int target) {
 		
-		if(searchThis[idx1] == target) {
-			return idx1;
-		} else if(searchThis[idx2] == target) {
-			return idx2;
-		} else {
+		int midpoint = average(idx1, idx2);
+		int start = lesserNumber(idx1, idx2); 
+		int end = greaterNumber(idx1, idx2);
 		
-			return 0;
+		if(searchThis[midpoint] == target) {
+			return midpoint;
+		} else if(start == end) {
+			return -1;
+		} else {
+			
+			if(searchThis[midpoint] == target) {
+				return midpoint;	
+			} else if(searchThis[midpoint] > target){
+				return binarySearch(searchThis, start, midpoint, target);
+			} else {
+				return binarySearch(searchThis, midpoint, end, target);
+			}
 			
 		}
+		
+	}
+	
+	public static int average(int a, int b) {
+		
+		return (int)((a + b) / 2);
+		
+	}
+	
+	public static int lesserNumber(int a, int b) {
+		
+		if(a < b) {
+			return a;
+		}
+		
+		return b;
+		
+	}
+	
+	public static int greaterNumber(int a, int b) {
+		
+		if(a > b) {
+			return a;
+		}
+		
+		return b;
 		
 	}
 	
